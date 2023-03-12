@@ -1,4 +1,4 @@
-const { BankAccount, BankError, add, getGrade, isValid} = require('./lesson3');
+const { BankAccount, BankError, add, getGrade } = require('./lesson3');
 const {add: addTS, subtract, multiply, divide } = require('./lesson3-typescript');
 
 
