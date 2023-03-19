@@ -9,26 +9,26 @@ const products = [
 
 jest.mock('./restClient');
 // rest.getAllProducts.mockResolvedValue(products);
-rest.getAllProducts.mockImplementation(() => Promise.resolve(products));
-console.log(rest.getAllProducts);
 
 describe('mocking promises', () => {
-  test('mock a promise that resolves', () => {
+  test('mock a promise that resolves', async () => {
+    rest.getAllProducts.mockImplementation(() => Promise.resolve(products));
     const result = ops.getStockCount();
     expect(rest.getAllProducts).toHaveBeenCalled();
-    expect(result).resolves.toBe(230);
+    await expect(result).resolves.toBe(230);
   });
 
-  test('mock another promise that resolves', () => {
+  test('mock another promise that resolves', async () => {
+    rest.getAllProducts.mockImplementation(() => Promise.resolve(products));
     const result = ops.getStockValue();
     expect(rest.getAllProducts).toHaveBeenCalled();
-    expect(result).resolves.toBe(120000);
+    await expect(result).resolves.toBe(12000);
   });
 
-  test('mock a promise that rejects', () => {
+  test('mock a promise that rejects', async () => {
     rest.getAllProducts.mockRejectedValue(new Error('error'));
     const result = ops.getStockValue();
     expect(rest.getAllProducts).toHaveBeenCalled();
-    expect(result).resolves.toBe(0);
+    await expect(result).resolves.toBe(0);
   })
 });
